@@ -4,5 +4,8 @@ from pages.locators import MainPageLocators
 
 class MainPage(BasePage):
     def should_be_correct_name_category(self):
-        name_category = self.browser.find_element(*MainPageLocators.NAME_CATEGORY).text
-        assert name_category == 'Велосипедные шины', self.browser.current_url
+        assert MainPageLocators.NAME_CATEGORY in self.browser.current_url, f"Current url is incorrect --> {self.browser.current_url}"
+
+    def add_good_to_favorites(self):
+        button = self.browser.find_element(*MainPageLocators.BUTTON_ADD_TO_FAVORITE)
+        button.click()
