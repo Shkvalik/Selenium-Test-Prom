@@ -23,3 +23,9 @@ class FavoritesPageLocators():
     PART_FAVORITES_URL = 'favorites'
     FAVORITES_GOODS = (By.CSS_SELECTOR, "div[data-qaid='favorite_row']")
     BUTTON_DELETE_GOODS = (By.CSS_SELECTOR, "span[data-qaid='delete_icon']")
+
+
+class GoodsPageLocators():
+    PART_GOODS_NAME_URL = 'pokrishka-schwalbe-marathon'
+    BUTTON_ADD_TO_FAVORITES = (By.CSS_SELECTOR, "div[class='GWc_y _1yIYf _3V5Rw'] span[data-qaid='add_favorite']")
+    HEART = (By.XPATH, "//div[@class='GWc_y _1yIYf _3V5Rw']/div[@class='yJNOx']//*[local-name() = 'path']")
