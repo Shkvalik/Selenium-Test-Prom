@@ -52,14 +52,6 @@ class BasePage():
             return True
         return False
 
-    def heart_is_filled_with_color(self):
-        heart = self.browser.find_element(*MainPageLocators.HEART).get_attribute('d')
-        assert 'M10' in heart
-
-    def heart_is_not_filled_with_color(self):
-        heart = self.browser.find_element(*MainPageLocators.HEART).get_attribute('d')
-        assert 'M14.5' in heart
-
     def go_to_favorites_page(self):
         button = self.browser.find_element(*BasePageLocators.BUTTON_FAVORITES)
         button.click()
