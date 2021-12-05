@@ -8,8 +8,9 @@ from pages.main_page import MainPage
 
 @pytest.mark.add_product
 class TestInteractionsWithProductFromMainPage():
+    @pytest.mark.xfail
     @pytest.fixture(scope="function", autouse=True)
-    def clean(self, browser):
+    def clean(self, browser): # Method for clean favorites after last tests. If user don't have goods in favorites, the test will fail, as will future tests.
         link = 'https://prom.ua/Velosipednye-shiny'
         page = BasePage(browser, link)
         page.open()
