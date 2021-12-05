@@ -1,4 +1,6 @@
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoSuchElementException, TimeoutException
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from LOGIN_DATA import EMAIL, PASSWORD
 from pages.locators import MainPageLocators, BasePageLocators
 
@@ -29,8 +31,12 @@ class BasePage():
     def should_be_authorized_user(self):
         assert self.is_element_present(*BasePageLocators.BUTTON_CABINET), "User is not authorized on the site"
 
-    def should_be_counter_favorite_goods(self):
-        assert self.is_element_present(*BasePageLocators.COUNTER_FAVORITE_GOODS), "Counter isn't display"
+    def must_be_counter_favorites_goods(self):
+        assert self.is_element_present(*BasePageLocators.COUNTER_FAVORITES_GOODS), "Counter isn't display"
+
+    def musnt_be_counter_favorites_goods(self):
+        assert self.is_not_element_present(*BasePageLocators.COUNTER_FAVORITES_GOODS,
+                                           timeout=2), "Counter isn't display"
 
     def is_element_present(self, how, what):
         try:
@@ -38,6 +44,13 @@ class BasePage():
         except NoSuchElementException:
             return False
         return True
+
+    def is_not_element_present(self, how, what, timeout=4):
+        try:
+            WebDriverWait(self.browser, timeout).until(EC.presence_of_element_located((how, what)))
+        except TimeoutException:
+            return True
+        return False
 
     def heart_is_filled_with_color(self):
         heart = self.browser.find_element(*MainPageLocators.HEART).get_attribute('d')
@@ -47,3 +60,6 @@ class BasePage():
         heart = self.browser.find_element(*MainPageLocators.HEART).get_attribute('d')
         assert 'M14.5' in heart
 
+    def go_to_favorites_page(self):
+        button = self.browser.find_element(*BasePageLocators.BUTTON_FAVORITES)
+        button.click()
