@@ -1,4 +1,4 @@
-# Test work for EVO
+# Test Task for Automation test
 
 ## Summary:
 Python/SeleniumWebDriver auto tests for Prom 
@@ -23,10 +23,12 @@ pytest -v --tb=line -m check_correct_url
 #### Python requirements:
 `requirements.txt`
 
-Installation of requirements:
+#### Installation of requirements:
 ```bash
 pip3 install -r requirements.txt
 ```
+#### Client:
+Company "EVO"
 
 #### Developers:
 Shkvalik
